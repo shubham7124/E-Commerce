@@ -1,24 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+// App.jsx
+import React from 'react';
+import { Provider } from 'react-redux';
+import store from './Component/Storage/Store';
+import ProductList from './Component/ProductList';
+import Cart from './Component/Card';
+import { BrowserRouter, Link, Outlet, Route, Routes } from 'react-router-dom';
+import Navbar from './Component/Navbar1';
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+      <div className="container ">
+      <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Navbar />}>
+          <Route index element={<ProductList/>} />
+          <Route path="/Card" element={<Cart />} />
+          
+        </Route>
+      </Routes>
+    </BrowserRouter>
+
+
+
+        {/* <ProductList /> */}
+        {/* <Cart /> */}
+      </div>
+    </Provider>
   );
 }
 
